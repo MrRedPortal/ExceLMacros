@@ -1,0 +1,61 @@
+Private Sub UserForm_Initialize()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    
+    Set ws = ThisWorkbook.Sheets("Sheet1") ' Adjust to your sheet name
+
+    ' Populate ComboBox1 (Function Theme)
+    Set rng = ws.Range("A2:A" & ws.Cells(ws.Rows.Count, "A").End(xlUp).Row)
+    With Me.cboFunctionTheme ' Adjust "cboFunctionTheme" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+
+    ' Populate ComboBox2 (Recommended)
+    Set rng = ws.Range("B2:B" & ws.Cells(ws.Rows.Count, "B").End(xlUp).Row)
+    With Me.cboRecommended ' Adjust "cboRecommended" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+
+    ' Populate ComboBox3 (Recommended Rank/APS Level)
+    Set rng = ws.Range("C2:C" & ws.Cells(ws.Rows.Count, "C").End(xlUp).Row)
+    With Me.cboRecommendedRank ' Adjust "cboRecommendedRank" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+
+    ' Populate ComboBox4 (Recommended Workgroup/Occupational Profile)
+    Set rng = ws.Range("D2:D" & ws.Cells(ws.Rows.Count, "D").End(xlUp).Row)
+    With Me.cboRecommendedWorkgroup ' Adjust "cboRecommendedWorkgroup" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+
+    ' Populate ComboBox5 (Recommended Sub Function)
+    Set rng = ws.Range("E2:E" & ws.Cells(ws.Rows.Count, "E").End(xlUp).Row)
+    With Me.cboRecommendedSubFunction ' Adjust "cboRecommendedSubFunction" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+
+    ' Populate ComboBox6 (Recommended Reports to Position)
+    Set rng = ws.Range("F2:F" & ws.Cells(ws.Rows.Count, "F").End(xlUp).Row)
+    With Me.cboRecommendedReports ' Adjust "cboRecommendedReports" to your ComboBox name
+        .Clear
+        For Each cell In rng
+            .AddItem cell.Value
+        Next cell
+    End With
+End Sub
