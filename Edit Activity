@@ -1,0 +1,35 @@
+Private Sub CancelButton_Click()
+
+End Sub
+
+Private Sub ConfirmButton_Click()
+
+End Sub
+
+Private Sub UserForm_Initialize()
+
+    Dim ws As Worksheet
+    Dim tbl As ListObject
+    Dim rowIndex As Long
+    
+    Set ws = ThisWorkbook.Sheets("Function Review Workbook")
+    Set tbl = ws.ListObjects("Source")
+    
+    
+    rowIndex = CLng(rowIndex)
+
+    Me.Row.Caption = "Row: " & rowIndex
+    Me.cboDivision.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Division Priorities").Index).Value
+    Me.ActivityTextBox.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Function/Task Activity").Index).Value
+    Me.cboReference.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Reference").Index).Value
+    Me.cboFunctionTheme.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Function Theme").Index).Value
+    Me.cboCustomer.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Customer").Index).Value
+    Me.cboRole.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Could this function be performed by any ADF Workgoup or APS Occupational Profile").Index).Value
+    Me.cboRank.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Recommended ADF/APS/Any").Index).Value
+    Me.hoursTextBox.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Hours per Week").Index).Value
+    Me.weeksTextBox.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Weeks per Year").Index).Value
+    Me.cboBranch.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Branch Priorities").Index).Value
+    Me.cboDirectorate.Value = tbl.DataBodyRange(rowIndex, tbl.ListColumns("Directorate Priorities").Index).Value
+    
+
+End Sub
