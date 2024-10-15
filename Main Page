@@ -1,0 +1,61 @@
+
+Private Sub AddUser_Click()
+
+    UserData.Show
+    
+End Sub
+
+
+Private Sub EditButton_Click()
+
+    Dim selectedID As Variant
+    Dim ws As Worksheet
+    Dim tbl As ListObject
+    Dim rowIndex As Long
+    
+    Set ws = ThisWorkbook.Sheets("Function Review Workbook")
+    Set tbl = ws.ListObjects("Source")
+    
+    ' Prompt for row ID
+    selectedID = Application.InputBox("Enter Id of the row you wish to edit:", "Select Row to Edit")
+    
+    If selectedID = "" Then
+        Exit Sub
+    End If
+    On Error Resume Next
+    rowIndex = Application.Match(selectedID, tbl.ListColumns("ID").DataBodyRange, 0)
+    On Error GoTo 0
+    If rowIndex = 0 Then
+        MsgBox "Invalid ID. Please try again.", vbExclamation
+        Exit Sub
+    End If
+    EditActivity.Tag = CStr(rowIndex)
+    EditActivity.Show
+    
+End Sub
+
+Private Sub TaskButton_Click()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Userdata")
+    If ws.Range("D2").Value = "" Then
+        MsgBox "Enter user data first"
+        Exit Sub
+    End If
+    ActivityInput.Show
+End Sub
+
+Private Sub UndoButton_Click()
+    Dim ws As Worksheet
+    Dim tbl As ListObject
+    Dim lastRow As Integer
+    
+    Set ws = ThisWorkbook.Sheets("Function Review Workbook")
+    ws.Unprotect
+    Set tbl = ws.ListObjects("Source")
+    lastRow = tbl.Range.Rows.Count
+    
+    If lastRow > 3 Then
+        tbl.ListRows(lastRow - 1).Delete
+    End If
+    ws.Protect
+End Sub
